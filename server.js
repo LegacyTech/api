@@ -9,6 +9,7 @@ const app = require('./config/app_config.js');
 const loginRouter = require('./routers/loginUserRouter');
 const loginDesktop = require('./routers/loginDesktopRouter');
 const usuario = require('./routers/usuarioRouter');
+const viagem = require('./routers/viagemRouter')
 
 //Retorno Padrão
 app.get("/", function( req, res ){
@@ -21,3 +22,4 @@ app.get("/", function( req, res ){
 app.use('/loginUser', loginRouter);
 app.use('/loginDesktop', loginDesktop);
 app.use('/Usuario', usuario);
+app.use('/Viagem', viagem);
