@@ -16,3 +16,14 @@ exports.listar = function ( res ){
   });
 
 }
+
+//Função que chama a model de select
+exports.buscar  = function ( destino , res ){
+
+  viagem.procurar( destino , function( result){
+
+    res.json( result );
+
+  });
+
+}

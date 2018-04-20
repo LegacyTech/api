@@ -1,6 +1,6 @@
 /*
   Autor : Matheus Alves
-  Data de modificação : 19/04/2018
+  Data de modificação : 20/04/2018
   Descrição : Arquivo de rotas para as Viagenss
   Tabela : tbl_viagem
 */
@@ -12,6 +12,15 @@ const viagemController = require('../controllers/viagemController.js'); //Estanc
 router.get('/', function( req , res ){
 
   viagemController.listar( res );
+
+});
+
+//Busca por Viagens
+router.post('/BuscarViagem' , function( req , res ){
+
+  let destino = req.body.destino; //POST de destino
+
+  viagemController.buscar( destino , res );
 
 });
 
