@@ -1,6 +1,6 @@
 /*
   Autor : Matheus Alves
-  Data de modificação : 20/04/2018
+  Data de modificação : 23/04/2018
   Descrição : Arquivo de rotas para as Viagenss
   Tabela : tbl_viagem
 */
@@ -21,6 +21,15 @@ router.post('/BuscarViagem' , function( req , res ){
   let destino = req.body.destino; //POST de destino
 
   viagemController.buscar( destino , res );
+
+});
+
+//Busca viagens por ID
+router.post('/BuscarViagemPorID', function( req , res ){
+
+  let id = req.body.id;
+
+  viagemController.buscarPorID( id , res );
 
 });
 
