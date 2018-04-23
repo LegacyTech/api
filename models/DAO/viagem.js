@@ -28,7 +28,11 @@ exports.listar = function( callback ){
             ON\
             	v.idPontoChegada = c.idPontoChegada\
             WHERE\
-              v.finalizada = 0';
+              v.finalizada = 0\
+			ORDER BY\
+				v.dtPartida asc,\
+                v.hrPartida asc\
+			LIMIT 10';
 
   //Executa a query
   db.query( sql , function( error , results, fields ){
@@ -71,7 +75,10 @@ exports.procurar = function( destino , callback ){
           ON\
           	v.idPontoChegada = c.idPontoChegada\
           WHERE\
-          	c.nomePonto LIKE ?  AND v.finalizada = 0";
+          	c.nomePonto LIKE ?  AND v.finalizada = 0\
+		ORDER BY\
+				v.dtPartida asc,\
+                v.hrPartida asc";
 
   //Executa a query
   db.query( sql , [destino], function( error , results , fields ){
