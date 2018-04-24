@@ -10,8 +10,10 @@ const PADRAO_SELECT = 'SELECT \
                           v.idViagem,\
                             DATE_FORMAT(v.dtPartida, "%d/%m/%Y") as dtIda,\
                             TIME_FORMAT(v.hrPartida , "%h:%i HRS") as hrIda,\
+                            TIME_FORMAT(v.hrChegada , "%h:%i HRS") as hrChegada,\
                             p.nomePonto as origem,\
                             c.nomePonto as destino,\
+                            v.descricao,\
                             v.valor as preco\
                         FROM \
                           tbl_viagem as v\
