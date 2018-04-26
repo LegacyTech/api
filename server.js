@@ -1,6 +1,6 @@
 /*
   Autor : Matheus Alves
-  Data de modificação : 17/04/2018
+  Data de modificação : 26/04/2018
   Descrição : Arquivo de start que contém as rotas
 */
 
@@ -9,7 +9,9 @@ const app = require('./config/app_config.js');
 const loginRouter = require('./routers/loginUserRouter');
 const loginDesktop = require('./routers/loginDesktopRouter');
 const usuario = require('./routers/usuarioRouter');
-const viagem = require('./routers/viagemRouter')
+const viagem = require('./routers/viagemRouter');
+const passagem = require('./routers/passagemRouter');
+
 
 //Retorno Padrão
 app.get("/", function( req, res ){
@@ -23,3 +25,4 @@ app.use('/loginUser', loginRouter);
 app.use('/loginDesktop', loginDesktop);
 app.use('/Usuario', usuario);
 app.use('/Viagem', viagem);
+app.use('/Passagem', passagem);
