@@ -11,7 +11,7 @@ const loginDesktop = require('./routers/loginDesktopRouter');
 const usuario = require('./routers/usuarioRouter');
 const viagem = require('./routers/viagemRouter');
 const passagem = require('./routers/passagemRouter');
-
+const endereco = require('./routers/enderecoRouter');
 
 //Retorno Padrão
 app.get("/", function( req, res ){
@@ -26,3 +26,4 @@ app.use('/loginDesktop', loginDesktop);
 app.use('/Usuario', usuario);
 app.use('/Viagem', viagem);
 app.use('/Passagem', passagem);
+app.use('/Endereco' , endereco);
