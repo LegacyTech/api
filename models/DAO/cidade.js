@@ -29,7 +29,7 @@ exports.listar = function( callback ){
 //Lista os registros com codEstado especifico
 exports.listarPorEstado = function( estado , callback ){
 
-  db.query('SELECT * FROM tbl_cidade WHERE codEstado = ?' , [estado] ,function( error , results, fields ){
+  db.query('SELECT * FROM tbl_cidade WHERE codEstado in (SELECT codEstado FROM tbl_estado WHERE nome = ?)' , [estado] ,function( error , results, fields ){
 
     if( !error ){
 
