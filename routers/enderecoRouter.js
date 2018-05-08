@@ -1,6 +1,6 @@
 /*
   Autor : Matheus Alves
-  Data de modificação : 05/05/2018
+  Data de modificação : 08/05/2018
   Descrição : Arquivo de rotas para o endereco ( cidade e estado)
   Tabela : tbl_cidade e tbl_estado
 */
@@ -12,6 +12,15 @@ const enderecoController = require('../controllers/enderecoController.js');//Est
 router.get('/Cidade', function(req, res){
 
     enderecoController.listarCidades(res);//Chama a controller
+
+});
+
+//Rota que retorna o ID da Cidade procurada
+router.get('/CidadeID', function(req, res){
+
+    let nomeCidade = req.query.nomeCidade;
+
+    enderecoController.listarCidadePorNome(nomeCidade, res);//Chama a controller
 
 });
 

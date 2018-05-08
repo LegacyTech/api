@@ -1,6 +1,6 @@
 /*
   Autor : Matheus Alves
-  Data de modificação : 02/05/2018
+  Data de modificação : 08/05/2018
   Descrição : Arquivo de controller para os enderecos
 */
 
@@ -12,6 +12,18 @@ exports.listarCidades = function( res ){
 
   //função da model que lista cidades
   cidade.listar( function( result ){
+
+    res.json( result ); //Retorna o json na tela
+
+  });
+
+}
+
+//Função que chama a model de cidades
+exports.listarCidadePorNome = function( nomeCidade , res ){
+
+  //função da model que lista cidades
+  cidade.listarPorNome( nomeCidade , function( result ){
 
     res.json( result ); //Retorna o json na tela
 

@@ -26,6 +26,25 @@ exports.listar = function( callback ){
 
 }
 
+//Lista todos os registros
+exports.listarPorNome = function( nomeCidade , callback ){
+
+  db.query('SELECT codCidade FROM tbl_cidade WHERE nomeCidade = ? LIMIT 1', [nomeCidade] , function( error , results, fields ){
+
+    if( !error ){
+
+      callback ( {sucesso : true , resultado : results[0].codCidade} );
+
+    }else{
+
+      callback ( {sucesso : false , _error : error} );
+
+    }
+
+  });
+
+}
+
 //Lista os registros com codEstado especifico
 exports.listarPorEstado = function( estado , callback ){
 
