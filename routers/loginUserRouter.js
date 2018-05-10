@@ -12,12 +12,12 @@ const loginController = require('../controllers/loginUserController.js'); //Esta
 router.post('/', function(req, res){
 
     let post = req.body;
-    
+
     //Pega valores do post
-    let usuario = post.usuario;
+    let email = post.email;
     let senha = post.senha;
 
-    loginController.autentica( usuario, senha, res ); //Chama a controller
+    loginController.autentica( email, senha, res ); //Chama a controller
 
 });
 

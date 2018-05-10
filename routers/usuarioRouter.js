@@ -73,9 +73,9 @@ var montarUsuario = function( req ){
   let sexo =       post.sexo;
   let celular =    post.celular;
   let telefone =   post.telefone;
-  let usuario =    post.usuario;
   let senha =      post.senha;
   let email =      post.email;
+  let dt_nasc =    post.dtNasc;
 
   senha = md5(senha) ; //Criptografa a senha
 
@@ -90,9 +90,10 @@ var montarUsuario = function( req ){
     "sexo" : sexo,
     "celular" : celular,
     "telefone" : telefone,
-    "usuario" : usuario,
     "senha" : senha,
-    "email" : email
+    "email" : email,
+    "dt_nasc" : dt_nasc,
+    "ativo" : 1
   }
 
   return usuarioJSON;

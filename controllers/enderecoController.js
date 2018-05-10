@@ -1,11 +1,12 @@
 /*
   Autor : Matheus Alves
-  Data de modificação : 08/05/2018
+  Data de modificação : 10/05/2018
   Descrição : Arquivo de controller para os enderecos
 */
 
 const estado = require('../models/DAO/estado.js');//Exporta model estado
 const cidade = require('../models/DAO/cidade.js');//Exporta model cidade
+const endereco = require('../models/DAO/endereco.js');//Exporta model endereco
 
 //Função que chama a model de cidades
 exports.listarCidades = function( res ){
@@ -48,6 +49,19 @@ exports.listarEstados = function( res ){
 
   //função da model que lista cidades
   estado.listar( function( result ){
+
+    res.json( result ); //Retorna o json na tela
+
+  });
+
+}
+
+
+//Função que chama a model de endereco
+exports.inserirEndereco = function( res ){
+
+  //função da model que cadastra enderecos
+  endereco.inserirEndereco( function( result ){
 
     res.json( result ); //Retorna o json na tela
 

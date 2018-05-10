@@ -1,6 +1,6 @@
 /*
   Autor : Matheus Alves
-  Data de modificação : 08/05/2018
+  Data de modificação : 10/05/2018
   Descrição : Arquivo de rotas para o endereco ( cidade e estado)
   Tabela : tbl_cidade e tbl_estado
 */
@@ -40,6 +40,30 @@ router.get('/Estado', function(req, res){
 
 });
 
+//Cadastrar endereco
+router.post('/CadastroEndereco', function(req, res){
 
+  let post = req.body;
+
+  let logradouro = post.logradouro;
+  let bairro = post.bairro;
+  let numero = post.numero;
+  let idTipoEndereco = post.tipoEndereco;
+  let cep = post.cep;
+  let codCidade = post.codCidade;
+
+  let enderecoJSON =
+  {
+      "bairro" : bairro,
+      "logradouro" : logradouro,
+      "idTipoEndereco" : idTipoEndereco,
+      "cep" : cep,
+      "codCidade" : codCidade,
+      "numero" : numero
+  }
+
+  enderecoController.inserirEndereco( enderecoJSON , res );
+
+});
 
 module.exports = router;//Exporta o router para todos usarem

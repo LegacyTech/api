@@ -10,15 +10,15 @@ const db = require('../../config/db_config.js'); //Importa o arquivo do banco
 //Função que cadastra um usuario e retorna um callback
 exports.cadastrar = function( usuarioJSON , callback ){
 
-  let sql = "SELECT usuario FROM tbl_cliente WHERE usuario = ? OR email = ?";
+  let sql = "SELECT email FROM tbl_cliente WHERE email = ?";
 
   //Verifica se existe registros igual ao solicitado
-  db.query( sql , [usuarioJSON.usuario , usuarioJSON.email], function( error , results, fields ){
+  db.query( sql , [usuarioJSON.email], function( error , results, fields ){
 
     //Verifica se houve retorno
     if( results.length > 0 ){
 
-      callback ( {sucesso : false , msg : "Esse usuário / email já existe !"} ); //Retorna o callback
+      callback ( {sucesso : false , msg : "Esse email já possui uma conta!"} ); //Retorna o callback
 
     }else{
 
@@ -37,6 +37,8 @@ exports.cadastrar = function( usuarioJSON , callback ){
           callback ( {sucesso : false , msg: "Erro ao inserir", _error : error} ); //Retorna o callback com o erro
 
         }
+
+        console.log("Entrou no model", error);
 
       });
 

@@ -8,12 +8,12 @@
 const db = require('../config/db_config.js'); //Importa o arquivo do banco
 
 //Função que autentica o usuario e retorna um callback
-exports.autenticaUsuario = function( usuario, senha, callback ){
+exports.autenticaUsuario = function( email, senha, callback ){
 
-    let sql = "SELECT * FROM tbl_cliente where usuario = ? and senha = MD5(?) limit 1 ";
+    let sql = "SELECT * FROM tbl_cliente where email = ? and senha = MD5(?) and ativo = 1 limit 1 ";
 
     //Executa a query
-    db.query( sql , [usuario, senha] , function( error, results, fields ){
+    db.query( sql , [email, senha] , function( error, results, fields ){
 
       //Verifica se houve erro e se voltou um resultado
       if( !error  && results.length == 1 ){
