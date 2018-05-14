@@ -58,10 +58,10 @@ exports.listarEstados = function( res ){
 
 
 //Função que chama a model de endereco
-exports.inserirEndereco = function( res ){
+exports.inserirEndereco = function( enderecoJSON , res ){
 
   //função da model que cadastra enderecos
-  endereco.inserirEndereco( function( result ){
+  endereco.inserirEndereco( enderecoJSON , function( result ){
 
     res.json( result ); //Retorna o json na tela
 

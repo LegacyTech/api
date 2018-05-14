@@ -38,8 +38,6 @@ exports.cadastrar = function( usuarioJSON , callback ){
 
         }
 
-        console.log("Entrou no model", error);
-
       });
 
     }

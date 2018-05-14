@@ -13,7 +13,7 @@ exports.inserirEndereco = function( enderecoJSON , callback ){
 
     if( !error ){
 
-      callback ( {sucesso : true , id: result.insertId} );
+      callback ( {sucesso : true , id : result.insertId} );
 
     }else{
 
