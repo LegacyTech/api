@@ -7,7 +7,7 @@
 //estancia as configurações do app
 const app = require('./config/app_config.js');
 const loginRouter = require('./routers/loginUserRouter');
-const loginDesktop = require('./routers/loginDesktopRouter');
+const loginMotorista = require('./routers/loginMotoristaRouter');
 const usuario = require('./routers/usuarioRouter');
 const viagem = require('./routers/viagemRouter');
 const passagem = require('./routers/passagemRouter');
@@ -22,7 +22,7 @@ app.get("/", function( req, res ){
 
 // ROTAS
 app.use('/loginUser', loginRouter);
-app.use('/loginDesktop', loginDesktop);
+app.use('/loginMotorista', loginMotorista);
 app.use('/Usuario', usuario);
 app.use('/Viagem', viagem);
 app.use('/Passagem', passagem);

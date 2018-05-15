@@ -6,7 +6,7 @@
 */
 
 const router =  require('express').Router(); // Chama router do express
-const loginDesktopController = require('../controllers/loginDesktopController.js');//Estancia metodos da controller login
+const loginMotoristaController = require('../controllers/loginMotoristaController.js');//Estancia metodos da controller login
 
 //Rota raiz
 router.post('/', function(req, res){
@@ -14,10 +14,10 @@ router.post('/', function(req, res){
     let post = req.body;
 
     //Pega valores do post
-    let email = post.email;
-    let senha = post.senha;
+    let cpf = post.cpf;
+    let dtNasc = post.dtNasc;
 
-    loginDesktopController.autentica(email, senha, res);//Chama a controller
+    loginMotoristaController.autentica(cpf, dtNasc, res);//Chama a controller
 
 });
 
