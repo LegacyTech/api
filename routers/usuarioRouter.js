@@ -59,6 +59,42 @@ router.post('/Deletar', function( req, res ){
 
 });
 
+//Atualiza dados cadastrais
+router.post('/AtualizarDados', function( req, res ){
+
+  let post = req.body;
+
+  let idCliente = post.idCliente;
+  let telefone = post.telefone;
+  let celular = post.celular;
+  let cep = post.cep;
+  let codCidade = post.codCidade;
+  let logradouro = post.logradouro;
+  let bairro = post.bairro;
+  let numero = post.numero;
+  let idEndereco = post.idEndereco;
+
+
+  let usuarioJSON =
+  {
+    "idCliente" : idCliente,
+    "telefone" : telefone,
+    "celular" : celular
+  }
+
+  let enderecoJSON = {
+    "idEndereco" : idEndereco,
+    "cep" : cep,
+    "logradouro" : logradouro,
+    "bairro" : bairro,
+    "numero" : numero,
+    "codCidade" : codCidade
+  }
+
+  usuarioController.atualizarDados( usuarioJSON , enderecoJSON , res ); //Chama a controller de delete
+
+});
+
 //Função que monta o usuario em JSON
 var montarUsuario = function( req ){
 

@@ -65,3 +65,15 @@ exports.deletar = function( idCliente , res ){
   });
 
 }
+
+//Função que chama a model de atualizar dados
+exports.atualizarDados = function( usuarioJSON, enderecoJSON , res ){
+
+  //Chama a model do usuario
+  usuario.atualizarDados( usuarioJSON , enderecoJSON , function( result ){
+
+    res.json( result ); //Imprime o resultado
+
+  });
+
+}

@@ -67,11 +67,36 @@ exports.listar = function( callback ){
 
 }
 
-//Função que lista 1 usuario e retorna um callback
+//Função que lista 1 usuario + endereco e retorna um callback
 exports.listarPorID = function( id , callback ){
 
+  let sql = "SELECT \
+            	cli.*,\
+                end.bairro,\
+                end.logradouro,\
+                end.numero,\
+                end.cep,\
+                cid.nomeCidade as cidade,\
+                cid.codCidade as codCidade,\
+                est.nome as estado,\
+                est.codEstado as codEstado\
+            FROM \
+            	tbl_cliente as cli\
+            INNER JOIN \
+            	tbl_endereco as end\
+            ON\
+            	end.idEndereco = cli.idEndereco\
+            INNER JOIN\
+            	tbl_cidade as cid\
+            ON\
+            	cid.codCidade = end.codCidade\
+            INNER JOIN\
+            	tbl_estado = est\
+            ON\
+            	cid.codEstado = est.codEstado\
+            WHERE idCliente = ?"
   //Executa a query
-  db.query( "SELECT * FROM tbl_cliente WHERE idCliente = ? ", [id] , function(error, results, fields){
+  db.query( sql , [id] , function(error, results, fields){
 
     //Verifica se houve erros
     if( !error && results.length > 0 ){
@@ -119,6 +144,36 @@ exports.atualizar = function( usuarioJSON , idCliente, callback ){
       });
 
     }
+
+  });
+
+}
+
+
+//Função que atualiza os dados do usuário
+exports.atualizarDados = function( usuarioJSON , enderecoJSON , callback ){
+
+  let sql = "UPDATE tbl_cliente SET telefone = ? , celular = ? WHERE idCliente = ? ";
+
+  db.query( sql , [usuarioJSON.telefone , usuarioJSON.celular , usuarioJSON.idCliente], function( error, results, fields ){
+
+      if( !error ){
+
+          sql = "UPDATE tbl_endereco SET ? WHERE idEndereco = ?";
+          db.query( sql , [enderecoJSON , enderecoJSON.idEndereco], function( erro, result, field ){
+            if( !erro ){
+              callback( {sucesso : true} );
+            }else{
+              callback ( {sucesso : false , _erro : erro } );
+            }
+
+          });
+
+      }else{
+
+        callback ( {sucesso : false , _erro : error} );
+
+      }
 
   });
 
