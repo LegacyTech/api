@@ -112,3 +112,40 @@ exports.procurarPorID = function( id , callback ){
   });
 
 }
+
+//Procura e lista paradas de uma viagem
+exports.listarParadas = function( idViagem , callback ){
+
+  let sql = "SELECT \
+              	pv.idPontos_viagem as idPonto,\
+                  P.nomePonto\
+              FROM\
+              	tbl_pontos_viagem as pv\
+              INNER JOIN\
+              	tbl_partida as p\
+              ON\
+              	pv.idPontoPartida = p.idPontoPartida\
+              INNER JOIN\
+              	tbl_viagem as v\
+              ON\
+              	v.idViagem = pv.idViagem\
+              WHERE\
+              	pv.idViagem = ?";
+
+  //Executa a query
+  db.query( sql , [idViagem], function( error , results , fields ){
+
+    //Verifica se há erros
+    if( !error ){
+
+      callback ( {resultado : results} ); //Retorna o callback
+
+    }else{
+
+      callback ( {sucesso : false , _error : error} ); //Retorna o callback
+
+    }
+
+  });
+
+}

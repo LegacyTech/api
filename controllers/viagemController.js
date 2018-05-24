@@ -38,3 +38,14 @@ exports.buscarPorID = function ( id , res ){
   });
 
 }
+
+//Função que chama a model de select id
+exports.listarParadas = function ( idViagem , res ){
+
+  viagem.listarParadas( idViagem , function( result ){
+
+    res.json( result );
+
+  });
+
+}

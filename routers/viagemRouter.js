@@ -33,4 +33,13 @@ router.post('/BuscarViagemPorID', function( req , res ){
 
 });
 
+//Busca paradas de uma viagem
+router.get('/BuscarParadas', function( req , res ){
+
+  let idViagem = req.query.idViagem;
+
+  viagemController.listarParadas( idViagem , res );
+
+});
+
 module.exports = router; //Exporta o router

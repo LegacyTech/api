@@ -14,6 +14,7 @@ const PADRAO_SELECT = 'SELECT \
                             TIME_FORMAT(v.hrChegada , "%h:%i HRS") as hrChegada,\
                             p.nomePonto as origem,\
                             c.nomePonto as destino,\
+                            passagem.acento as poltrona,\
                             v.descricao,\
                             v.valor as preco\
                         FROM \
@@ -36,7 +37,7 @@ exports.listarPorUser = function( id , ativo, callback ){
                   ON\
                     passagem.idViagem = v.idViagem\
                   WHERE\
-                    passagem.idCliente = ? AND passagem.ativo = ? \
+                    passagem.idCliente = ? AND v.finalizada = ? \
                   ORDER BY\
                     dtIda\
                   DESC'
