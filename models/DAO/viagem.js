@@ -149,3 +149,43 @@ exports.listarParadas = function( idViagem , callback ){
   });
 
 }
+
+//Procura e lista paradas de uma viagem
+exports.listarPoltronas = function( idViagem , callback ){
+
+  let sql = "SELECT\
+              	p.acento , tp.qntLugares\
+              FROM\
+              	tbl_passagem as p\
+              INNER JOIN\
+              	tbl_viagem as v\
+              ON\
+              	p.idViagem = v.idViagem\
+              INNER JOIN\
+              	tbl_onibus as o\
+              ON\
+              	v.idOnibus = o.idOnibus\
+              INNER JOIN\
+              	tbl_tipoonibus as tp\
+              ON\
+              	o.idTipoOnibus = tp.idTipoOnibus\
+              WHERE\
+              	p.idViagem = ?";
+
+  //Executa a query
+  db.query( sql , [idViagem], function( error , results , fields ){
+
+    //Verifica se há erros
+    if( !error ){
+
+      callback ( {resultado : results} ); //Retorna o callback
+
+    }else{
+
+      callback ( {sucesso : false , _error : error} ); //Retorna o callback
+
+    }
+
+  });
+
+}

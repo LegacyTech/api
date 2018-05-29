@@ -42,4 +42,14 @@ router.get('/BuscarParadas', function( req , res ){
 
 });
 
+//Busca lugares comprados de uma viagem
+router.get('/BuscarPoltronasCompradas', function( req , res ){
+
+  let idViagem = req.query.idViagem;
+
+  viagemController.listarPoltronas( idViagem , res );
+
+});
+
+
 module.exports = router; //Exporta o router

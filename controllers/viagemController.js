@@ -39,10 +39,21 @@ exports.buscarPorID = function ( id , res ){
 
 }
 
-//Função que chama a model de select id
+//Função que chama a model de select de paradas
 exports.listarParadas = function ( idViagem , res ){
 
   viagem.listarParadas( idViagem , function( result ){
+
+    res.json( result );
+
+  });
+
+}
+
+//Função que chama a model de select de poltronas compradas
+exports.listarPoltronas = function ( idViagem , res ){
+
+  viagem.listarPoltronas( idViagem , function( result ){
 
     res.json( result );
 

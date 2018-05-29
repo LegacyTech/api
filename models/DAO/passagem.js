@@ -1,6 +1,6 @@
 /*
   Autor : Matheus Alves
-  Data de modificação : 26/04/2018
+  Data de modificação : 29/05/2018
   Descrição : Arquivo de model para passagem
   Tabela : tbl_passagem
 */
@@ -48,6 +48,26 @@ exports.listarPorUser = function( id , ativo, callback ){
     if( !error ){
 
       callback ( {'sucesso' : true , 'resultado' : results} );
+
+    }else{
+
+      callback ( {'sucesso' : false , _error : error} );
+
+    }
+
+  });
+
+}
+
+//Salva uma compra de passagem
+exports.comprar = function( passagem , callback ){
+
+
+  db.query( "INSERT INTO tbl_passagem SET ?", passagem , function(error , result , field){
+
+    if( !error ){
+
+      callback ( {'sucesso' : true , 'idPassagem' : result.insertId} );
 
     }else{
 
