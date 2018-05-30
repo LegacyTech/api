@@ -63,7 +63,7 @@ exports.listarPorUser = function( id , ativo, callback ){
 exports.comprar = function( passagem , callback ){
 
 
-  db.query( "INSERT INTO tbl_passagem SET ?", passagem , function(error , result , field){
+ db.query( "INSERT INTO tbl_passagem SET ?", passagem , function(error , result , field){
 
     if( !error ){
 

@@ -173,18 +173,42 @@ exports.listarPoltronas = function( idViagem , callback ){
               WHERE\
               	p.idViagem = ?";
 
+let sql_extra = "SELECT\
+                      tp.qntLugares\
+                FROM\
+                    tbl_viagem as v\
+                INNER JOIN\
+                  tbl_onibus as o\
+                ON\
+                	v.idOnibus = o.idOnibus\
+                INNER JOIN\
+                	tbl_tipoonibus as tp\
+                ON\
+                  o.idTipoOnibus = tp.idTipoOnibus\
+                WHERE\
+                	v.idViagem = ?";
+
   //Executa a query
   db.query( sql , [idViagem], function( error , results , fields ){
 
     //Verifica se há erros
-    if( !error ){
+    if( !error && results.length > 0 ){
 
       callback ( {resultado : results} ); //Retorna o callback
 
+    }else if(!error){
+
+      db.query( sql_extra ,[idViagem], function(err , result, field){
+        if(!err){
+          callback({resultado : [{ 'acento' : '0' , 'qntLugares':result[0].qntLugares}]});
+        }else{
+          callback({sucesso : false})
+        }
+      });
+
+
     }else{
-
       callback ( {sucesso : false , _error : error} ); //Retorna o callback
-
     }
 
   });

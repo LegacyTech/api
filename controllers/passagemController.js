@@ -14,9 +14,9 @@ exports.listarPorUser = function( id , ativo, res ){
 
 }
 
-exports.comprarPassagem = function( passagem , res ){
+exports.comprarPassagem = function( json , res ){
 
-  passagem.listarPorUser( 1 , 1 , function( result ){
+  passagem.comprar( json , function( result){
     res.json( result );
   });
 
