@@ -1,4 +1,4 @@
-/*
+﻿/*
   Autor : Matheus Alves
   Data de modificação : 23/04/2018
   Descrição : Arquivo de model para viagem
@@ -8,6 +8,7 @@
 const db = require('../../config/db_config.js'); //Importa o arquivo do banco
 const PADRAO_SELECT = 'SELECT \
                           v.idViagem,\
+			  v.imagem1,\
                             DATE_FORMAT(v.dtPartida, "%d/%m/%Y") as dtIda,\
                             TIME_FORMAT(v.hrPartida , "%h:%i HRS") as hrIda,\
                             TIME_FORMAT(v.hrChegada , "%h:%i HRS") as hrChegada,\
