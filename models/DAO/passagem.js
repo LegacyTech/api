@@ -78,3 +78,34 @@ exports.comprar = function( passagem , callback ){
   });
 
 }
+
+exports.getPassagem = function( idPassagem , callback ){
+
+  let sql = "SELECT \
+	p.idPassagem, p.idViagem, p.acento , c.CPF , ponto.nomePonto, concat_ws(' ' , c.nome , c.sobrenome)\
+FROM \
+	tbl_passagem as p \
+INNER JOIN\
+	tbl_cliente as c\
+ON\
+	c.idCliente = p.idCliente\
+INNER JOIN\
+	tbl_partida as ponto\
+ON\
+	p.idPontoParada = ponto.idPontoPartida\
+WHERE p.idPassagem = 5";
+
+  db.query( sql , [idPassagem], function( error , result, fields){
+
+    if( !error ){
+      //Retorna o json com a getPassagem
+      callback( {sucesso:true , resultado : result } );
+
+    }else{
+      //Retorna o erro
+      callback( { sucesso:false , _error:error} );
+    }
+
+  });
+
+}

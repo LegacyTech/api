@@ -39,5 +39,15 @@ router.post('/Comprar' , function( req , res ){
 
 });
 
+router.get('/PegarPassagem' , function( req , res){
+
+  //Pega o id da passagem enviado
+  let idPassagem = req.query.idPassagem;
+
+  //Chama a controller de passagens
+  passagemController.getPassagem( idPassagem , res );
+
+});
+
 
 module.exports = router;

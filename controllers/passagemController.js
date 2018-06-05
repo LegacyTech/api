@@ -21,3 +21,12 @@ exports.comprarPassagem = function( json , res ){
   });
 
 }
+
+exports.getPassagem = function( idPassagem , res ){
+
+  //Chama a model de passagem
+  passagem.getPassagem( idPassagem , function( result){
+    res.json( result );
+  });
+
+}
