@@ -78,7 +78,7 @@ exports.listarPorID = function( id , callback ){
                 end.cep,\
                 cid.nomeCidade as cidade,\
                 cid.codCidade as codCidade,\
-                est.nome as estado,\
+                est.nomeEstado as estado,\
                 est.codEstado as codEstado\
             FROM \
             	tbl_cliente as cli\

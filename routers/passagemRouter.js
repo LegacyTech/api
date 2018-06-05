@@ -30,7 +30,7 @@ router.post('/Comprar' , function( req , res ){
   {
     "acento" : acento ,
     "idCliente" : idCliente,
-    "idPontoParada" : idPontoParada,
+    "idPontos_viagem" : idPontoParada,
     "idViagem" : idViagem,
     "ativo" : 1
   };

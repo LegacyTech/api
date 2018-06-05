@@ -16,7 +16,8 @@ const PADRAO_SELECT = 'SELECT \
                             c.nomePonto as destino,\
                             passagem.acento as poltrona,\
                             v.descricao,\
-                            v.valor as preco\
+                            v.valor as preco,\
+							passagem.idPassagem\
                         FROM \
                           tbl_viagem as v\
                         INNER JOIN\
@@ -82,24 +83,24 @@ exports.comprar = function( passagem , callback ){
 exports.getPassagem = function( idPassagem , callback ){
 
   let sql = "SELECT \
-	p.idPassagem, p.idViagem, p.acento , c.CPF , ponto.nomePonto, concat_ws(' ' , c.nome , c.sobrenome)\
-FROM \
-	tbl_passagem as p \
-INNER JOIN\
-	tbl_cliente as c\
-ON\
-	c.idCliente = p.idCliente\
-INNER JOIN\
-	tbl_partida as ponto\
-ON\
-	p.idPontoParada = ponto.idPontoPartida\
-WHERE p.idPassagem = 5";
+				p.idPassagem, p.idViagem, p.acento , c.CPF , ponto.nomePonto, concat_ws(' ' , c.nome , c.sobrenome) as cliente\
+			FROM \
+				tbl_passagem as p \
+			INNER JOIN\
+				tbl_cliente as c\
+			ON\
+				c.idCliente = p.idCliente\
+			INNER JOIN\
+				tbl_partida as ponto\
+			ON\
+				p.idPontos_viagem = ponto.idPontoPartida\
+			WHERE p.idPassagem = ?";
 
   db.query( sql , [idPassagem], function( error , result, fields){
 
-    if( !error ){
+    if( !error && result.length > 0 ){
       //Retorna o json com a getPassagem
-      callback( {sucesso:true , resultado : result } );
+      callback( {sucesso:true , resultado : result[0] } );
 
     }else{
       //Retorna o erro
