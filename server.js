@@ -12,6 +12,7 @@ const usuario = require('./routers/usuarioRouter');
 const viagem = require('./routers/viagemRouter');
 const passagem = require('./routers/passagemRouter');
 const endereco = require('./routers/enderecoRouter');
+const manutencao = require('./routers/manutencaoRouter');
 
 //Retorno Padrão
 app.get("/", function( req, res ){
@@ -27,3 +28,4 @@ app.use('/Usuario', usuario);
 app.use('/Viagem', viagem);
 app.use('/Passagem', passagem);
 app.use('/Endereco' , endereco);
+app.use('/Manutencao' , manutencao);
